@@ -1,40 +1,54 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int DIM = 8;
+#define int long long
+#define fastio ios_base::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
+#include <cstdio>
 
-vector<vector<bool>> blocked(DIM, vector<bool>(DIM));
-vector<bool> rows_taken(DIM);
-vector<bool> diag1(DIM * 2 - 1);
-vector<bool> diag2(DIM * 2 - 1);
+/*
+*/
+int DIM = 8;
 
-int valid_num = 0;
+vector<vector<bool>>blocked(DIM, vector<bool>(DIM));
+vector<bool>row_taken(DIM);
+vector<bool>diag1(DIM * 2 - 1);
+vector<bool>diag2(DIM * 2 - 1);
 
-void search_queens(int c = 0) {
-	if (c == DIM) {
-		valid_num++;
-		return;
-	}
+int res = 0;
 
-	for (int r = 0; r < DIM; r++) {
-		bool row_open = !rows_taken[r];
-		bool diag_open = !diag1[r + c] && !diag2[r - c + DIM - 1];
-		if (!blocked[r][c] && row_open && diag_open) {
-			rows_taken[r] = diag1[r + c] = diag2[r - c + DIM - 1] = true;
-			search_queens(c + 1);
-			rows_taken[r] = diag1[r + c] = diag2[r - c + DIM - 1] = false;
-		}
-	}
+void evil_recursion(int depth) {
+    if (depth == DIM) {
+        res++;
+        return;
+    }
+    else {
+        for (int r = 0; r < DIM; r++) {
+            bool row_open = !row_taken[r];
+            bool diag_open = !diag1[r + depth] && !diag2[r - depth + DIM - 1];
+            if (!blocked[r][depth] && row_open && diag_open) {
+                row_taken[r] = diag1[r + depth] = diag2[r - depth + DIM - 1] = true;
+                evil_recursion(depth + 1);
+                row_taken[r] = diag1[r + depth] = diag2[r - depth + DIM - 1] = false;
+            }
+        }
+    }
+
 }
 
-int main() {
-	for (int r = 0; r < DIM; r++) {
-		string row;
-		cin >> row;
-		for (int c = 0; c < DIM; c++) { blocked[r][c] = row[c] == '*'; }
-	}
+int32_t main() {
+    //freopen("input.txt","r",stdin);
+    //freopen("output.out","w",stdout);
+    fastio;
+    for (int i = 0; i < DIM; i++) {
+        string row; cin >> row;
+        for (int j = 0; j < DIM; j++) {
+            if (row[j] == '*') {
+                blocked[i][j] = true;
+            }
+        }
+    }
+    evil_recursion(0);
+    cout << res << endl;
 
-	search_queens();
-
-	cout << valid_num << endl;
+    return 0;
 }
