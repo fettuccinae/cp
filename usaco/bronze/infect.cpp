@@ -5,6 +5,7 @@ struct Interaction {
     int t, x, y;
 };
 
+
 int N, T;
 string final_state;
 vector<Interaction> interactions;
