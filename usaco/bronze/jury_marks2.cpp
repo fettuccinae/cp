@@ -13,8 +13,10 @@ int32_t main() {
     //freopen("output.out","w",stdout);
     fastio;
     int k, n; cin >> k >> n;
-    set<int>res;
+    unordered_set<int>all_possibilities, sum_shi;
     vector<int>jury(k), mem(n);
+    int res = 0;
+
     for (int i = 0; i < k; i++) {
         cin >> jury[i];
     }
@@ -24,16 +26,28 @@ int32_t main() {
     int l_sum = 0;
     for (int i = 0; i < k; i++) {
         l_sum += jury[i];
+        sum_shi.insert(l_sum);
         for (int j = 0; j < n; j++) {
-            if ((mem[j] - l_sum ) <= 4000000 && (mem[j] - l_sum ) >= -4000000){
-                res.insert(mem[j] - l_sum);
-            }
+            all_possibilities.insert(mem[j] - l_sum);
         }
     }
+    for (int i : all_possibilities) {
+        int j = 0;
+        for (; j < n; j++) {
+            if (sum_shi.count(mem[j] - i) == 0) {
+                break;
+            }
+        }
+        if (j == n) {
+            res++;
+        }
+    }
+
+
     // for (int i : res) {
     //     cout << i << endl;
     // }
-    cout << res.size() << endl;
+    cout << res << endl;
 
     return 0;
 }
