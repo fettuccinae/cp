@@ -1,0 +1,15 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "*.dbclient-js": "javascript",
+        "ostream": "cpp",
+        "vector": "cpp",
+        "xstring": "cpp",
+        "xlocale": "cpp",
+        "format": "cpp",
+        "xutility": "cpp",
+        "cstdlib": "cpp",
+        "cmath": "cpp",
+        "xiosbase": "cpp"
+    }
+}
