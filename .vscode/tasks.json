@@ -14,13 +14,9 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "group": "build",
             "detail": "Compiler: /usr/bin/g++"
         },
-
         {
             "label": "Compile & Run with input.txt",
             "type": "shell",
@@ -34,7 +30,7 @@
             },
             "group": {
                 "kind": "build",
-                "isDefault": false
+                "isDefault": true
             },
             "problemMatcher": [
                 "$gcc"
