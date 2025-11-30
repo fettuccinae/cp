@@ -1,25 +1,49 @@
-#include <cassert>
-#include <iostream>
-#include <string>
+#include <bits/stdc++.h>
+using namespace std;
 
-using std::cout;
-using std::endl;
-using std::string;
+#define int long long
+#define fastio ios_base::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
+#include <cstdio>
 
-int main() {
-	int cow_num;
-	string cows;
-	std::cin >> cow_num >> cows;
-	assert(cows.size() == cow_num && cow_num % 2 == 0);
+/*
+*/
+int counter(string s, bool reverse) {
+    int score = 0;
+    if (reverse == false) {
+        for (int i = 0; i < s.size(); i++) {
+            if (i % 2 == 1 && s[i] == 'G') {
+                score++;
+            }
+            else if (i % 2 == 0 && s[i] == 'H') {
+                score++;
+            }
+        }
+    }
+    else {
+        for (int i = s.size(); i > -1; i--) {
+            if (i % 2 == 1 && s[i] == 'G') {
+                score++;
+            }
+            else if (i % 2 == 0 && s[i] == 'H') {
+                score++;
+            }
 
-	int flips = 0;
-	for (int c = cow_num - 2; c >= 0; c -= 2) {
-		string sub = cows.substr(c, 2);
-		if (sub[0] == sub[1]) { continue; }
-		if ((sub == "GH" && flips % 2 == 0) || (sub == "HG" && flips % 2 == 1)) {
-			flips++;
-		}
-	}
+        }
+    }
+    return score;
+}
+int32_t main() {
+    //freopen("input.txt","r",stdin);
+    //freopen("output.out","w",stdout);
+    fastio;
+    int N; cin >> N;
+    string s; cin >> s;
+    int res = 0;
+    for (int i = s.size(); i > 0; i--) {
+        string sub = s.substr(0, i);
+        int score = counter(sub, false);
+        int 
+    }
 
-	cout << flips << endl;
+    return 0;
 }
