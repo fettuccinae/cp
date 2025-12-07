@@ -14,7 +14,6 @@ const vector<string> COWS = []() {
     std::sort(std::begin(tmp), std::end(tmp));
     return tmp;
     }();
-// EndCodeSnip
 
 int main() {
     std::map<string, int> cow_inds;
