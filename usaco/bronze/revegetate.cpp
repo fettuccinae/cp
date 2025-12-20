@@ -8,12 +8,9 @@ using namespace std;
 /*
 */
 int32_t main() {
-    freopen("revegetate.in", "r", stdin);
-    freopen("revegetate.out", "w", stdout);
+    // freopen("revegetate.in", "r", stdin);
+    // freopen("revegetate.out", "w", stdout);
     fastio;
-    int tt; cin >> tt;
-    while (tt--) {
-
-    }
+    
     return 0;
 }
