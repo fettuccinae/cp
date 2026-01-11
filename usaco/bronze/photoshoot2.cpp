@@ -21,6 +21,7 @@ int32_t main() {
         cin >> b[i];
         b[i]--;
     }
+
     int res = 0, j = 0;
     for (int i = 0; i < n; i++) {
         while (j < n && moved[a[j]]) {
