@@ -7,29 +7,34 @@ using namespace std;
 
 /*
 */
-int32_t main(){
+int32_t main() {
     //freopen("input.txt","r",stdin);
     //freopen("output.out","w",stdout);
     fastio;
     int n;
     cin >> n;
-    vector<int> data(n);
-    map<int, int> occ, prev;
-
-    for (int i = 0; i < n; i++)
-    {
+    vector<int>data(n), uniq(n);
+    unordered_map<int, int>count;
+    unordered_map<int, pair<int, int>>res;
+    unordered_set<int>curr;
+    for (int i = 0; i < n; i++) {
         cin >> data[i];
-        occ[data[i]]++;
-        if (occ[data[i]] >= 2){
-            prev[data[i]] = occ.size() - 1;
+        count[data[i]]++;
+        curr.insert(data[i]);
+        if (count[data[i]] == 1) {
+            res[data[i]] = make_pair(i, 0);
         }
+        else {
+            res[data[i]] = make_pair(i, res[data[i]].first);
+        }
+        uniq[i] = curr.size() - 1;
     }
-    int res = 0;
-    for (auto pair : prev)
-    {
-        res += pair.second;
+    int final_res = 0;
+    for (auto& it : res) {
+        final_res += uniq[it.second.second];
+        
     }
-    cout << res << endl;
+    cout << final_res << endl;
 
     return 0;
 }
