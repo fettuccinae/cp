@@ -7,43 +7,22 @@ using namespace std;
 
 /*
 */
-int counter(string s, bool reverse) {
-    int score = 0;
-    if (reverse == false) {
-        for (int i = 0; i < s.size(); i++) {
-            if (i % 2 == 1 && s[i] == 'G') {
-                score++;
-            }
-            else if (i % 2 == 0 && s[i] == 'H') {
-                score++;
-            }
-        }
-    }
-    else {
-        for (int i = s.size(); i > -1; i--) {
-            if (i % 2 == 1 && s[i] == 'G') {
-                score++;
-            }
-            else if (i % 2 == 0 && s[i] == 'H') {
-                score++;
-            }
-
-        }
-    }
-    return score;
-}
 int32_t main() {
     //freopen("input.txt","r",stdin);
     //freopen("output.out","w",stdout);
     fastio;
-    int N; cin >> N;
+    int n; cin >> n;
     string s; cin >> s;
     int res = 0;
-    for (int i = s.size(); i > 0; i--) {
-        string sub = s.substr(0, i);
-        int score = counter(sub, false);
-        int 
+    bool flip = false;
+    for (int i = n - 2; i > -1; i -= 2) {
+        string temp = s.substr(i, 2);
+        if ((temp == "GH" && flip == false) || (temp == "HG" && flip == true)) {
+            res++;
+            flip = !flip;
+        }
     }
+    cout << res << endl;
 
     return 0;
 }
