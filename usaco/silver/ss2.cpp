@@ -7,36 +7,26 @@ using namespace std;
 
 /*
 */
-int32_t main() {
+int32_t main(){
     //freopen("input.in","r",stdin);
     //freopen("output.out","w",stdout);
     fastio;
     int n, x;
     cin >> n >> x;
-
-    vector<int>data(n), pref_sum(n);
-    cin >> data[0];
-    pref_sum[0] = data[0];
-
-    for (int i = 1; i < n; i++) {
-        cin >> data[i];
-        pref_sum[i] = pref_sum[i - 1] + data[i];
-    }
-
+    vector<int>data(n, 0);
     int res = 0;
     for (int i = 0; i < n; i++) {
-        if (i < n-1 && pref_sum[i + 1] == x) {
-            res++;
-        }
-        for (int j = i + 1; j < n; j++) {
-            if (pref_sum[j] - pref_sum[i] == x) {
-                res++;
-            }
-        }
+        cin >> data[i];
     }
+    map<int, int>sums;
+    sums[0] = 1;
+    int p_sum = 0;
+    for (int i = 0; i < n; i++) {
+        p_sum += data[i];
+        res += sums[p_sum - x];
+        sums[p_sum]++;
+    }
+
     cout << res << endl;
-
-
-
     return 0;
 }
